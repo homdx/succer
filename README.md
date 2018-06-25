@@ -10,13 +10,16 @@ Binaries including android apk can be found in the bin folder.
 # Requirements
 Running on desktop:
 - Kivy
+
 Building executable:
 - Kivy
 - Pyinstaller
+
 Building apk:
 - Buildozder
 - Android SDK
 - Android NDK
+
 Building IOS App:
 - MacOS Computer
 - Xcode
