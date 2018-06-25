@@ -26,5 +26,11 @@ Building IOS App:
 - Buildozer
 - KivyIOS
 
+# Creators
+- Zack K
+- Misha K
+- Reed K
+- A ton of people we don't know who created python and kivy.
+
 # Please Commit your Improvements
 I really appreciate the help!
