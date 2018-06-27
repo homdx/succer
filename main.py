@@ -3,7 +3,7 @@ from kivy.uix.widget import Widget
 from kivy.properties import NumericProperty, ReferenceListProperty, ObjectProperty
 from kivy.vector import Vector
 from kivy.clock import Clock
-
+from kivy.core.window import Window
 
 class SuccerPlayer(Widget):
     score = NumericProperty(0)
@@ -24,12 +24,40 @@ class SuccerBall(Widget):
 
     def move(self):
         self.pos = Vector(*self.velocity) + self.pos
-
+spd = 30
 
 class SuccerGame(Widget):
     ball = ObjectProperty(None)
     player1 = ObjectProperty(None)
     player2 = ObjectProperty(None)
+
+    def __init__(self, **kwargs):
+        super(SuccerGame, self).__init__(**kwargs)
+        self._keyboard = Window.request_keyboard(self._keyboard_closed, self)
+        self._keyboard.bind(on_key_down=self._on_keyboard_down)
+
+    def _keyboard_closed(self):
+        self._keyboard.unbind(on_key_down=self._on_keyboard_down)
+        self._keyboard = None
+
+    def _on_keyboard_down(self, keyboard, keycode, text, modifiers):
+        if keycode[1] == 'w':
+            self.player1.center_y += spd
+        elif keycode[1] == 's':
+            self.player1.center_y -= spd
+        elif keycode[1] == 'd':
+            self.player1.center_x += spd
+        elif keycode[1] == 'a':
+            self.player1.center_x -= spd
+        elif keycode[1] == 'up':
+            self.player2.center_y += spd
+        elif keycode[1] == 'down':
+            self.player2.center_y -= spd
+        elif keycode[1] == 'right':
+            self.player2.center_x += spd
+        elif keycode[1] == 'left':
+            self.player2.center_x -= spd
+        return True
 
     def serve_ball(self, vel=(4, 0)):
         self.ball.center = self.center
