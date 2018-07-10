@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.properties import NumericProperty, ReferenceListProperty, ObjectProperty
@@ -83,7 +85,7 @@ class SuccerGame(Widget):
                 self.ball.velocity_x *= -1
         if self.ball.x > self.width:
             if (self.height*0.26 < self.ball.y) & (self.ball.y < self.height*0.74):
-                self.player2.score += 1
+                self.player1.score += 1
                 self.serve_ball(vel=(4, 0))
             else:
                 self.ball.velocity_x *= -1
